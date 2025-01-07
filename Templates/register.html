@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block main %}
+    <div class="container" style="margin-top: 30px; margin-bottom: 50px;">
+        <div class="row justify-content-center">
+            <!-- Form Section (Centered) -->
+            <div class="col-md-6 col-12">
+                <form class="card shadow-lg p-4" action="{% url 'Register' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <h2 class="text-center mb-4" style="font-family: 'Poppins', sans-serif; color: #333;">Register</h2>
+                    <hr>
+                    {% if messages %}
+                    <div class="alert alert-info" role="alert">
+                        {% for message in messages %}
+                        {{ message }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    
+                    <div class="mb-3">
+                        <label for="userName" class="form-label">User Name</label>
+                        <input type="text" class="form-control" id="userName" name="username" placeholder="Choose a user name">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="Enter your email">
+                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Create a password">
+                    </div>
+
+                    <!-- Profile Image Upload Section -->
+                    <div class="mb-3">
+                        <label for="profileImage" class="form-label">Profile Image</label>
+                        <input type="file" class="form-control" id="profileImage" name="profile_image">
+                    </div>
+
+                    <p class="text-center">Already have an account? <a href="{% url 'Login' %}">Login</a></p>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock main %}
